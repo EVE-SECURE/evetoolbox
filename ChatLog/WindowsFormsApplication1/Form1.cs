@@ -10,6 +10,7 @@ using System.IO;
 using System.Collections;
 using System.Threading;
 
+
 namespace WindowsFormsApplication1
 {
     public partial class Form1 : Form
@@ -21,6 +22,11 @@ namespace WindowsFormsApplication1
         public StarSearch StarDict;
         Mutex RichLineReadMutex = null;
         public string MyDocPath = "";
+        public AITalker talker = null;
+        private int TalkerTimerSkip = 0;
+
+        AiTalkerForm soundform = new AiTalkerForm();
+
         public Form1()
         {
             InitializeComponent();
@@ -35,23 +41,33 @@ namespace WindowsFormsApplication1
             bool createdNew = false;
             RichLineReadMutex = new Mutex(false, "RichReadLine", out createdNew);
             MyDocPath = Environment.GetFolderPath(Environment.SpecialFolder.Personal) + "\\EVE\\logs\\Chatlogs";
+            talker = new AITalker();
 
-            //string[] s = StarDict.DisStrWithEngOrOther("英语测试GY5有红");
-            //if (s != null)
-            //{
-            //   for (int i = 0; i < s.Length; i++) Debug(s[i]);
-            //}
-            //else {
-            //   Debug("OneHoleWorld");
-            //}
-            testbutton_Click(null, null);
+            //soundform.aitalker = talker;
+            
+            StartWatchLog();
+            SoundTimer.Enabled = true;
+            int tid = Thread.CurrentThread.ManagedThreadId;
+            Debug("Main tid is : "+ tid.ToString());
+            this.Text = "FDK 报警器 by 无脑战士";
+            this.Width = 451;
+            this.Height = 219;
+            PickedResult.Text = "长安内部试用版\r\n斐德克地区有效";
+            //PickedResult.Text = "";
+            PickedResult.Enabled = false;
 
         }
+
         public void Debug(string str)
         {
             //DebugOutput.Text = str + "\r\n" + DebugOutput.Text;
             AddTextToObj(DebugOutput, str);
         }
+
+        /// <summary>
+        /// 监视器的回到函数
+        /// </summary>
+        /// <param name="str"></param>
         public void RichReadLine(string str) 
         {
             Debug(str);
@@ -65,6 +81,7 @@ namespace WindowsFormsApplication1
                 {
                     if (outline.Length > 0) { outline = outline + ","; }
                     outline = outline + ss.FullName;
+                    talker.AddStarSystemAlart(ss.FullName);
                 }
                 outline = "发现 (" + outline + ") @" + str;
                 AddTextToObj(PickedResult, outline);
@@ -79,21 +96,33 @@ namespace WindowsFormsApplication1
                     {
                         if (outline.Length > 0) { outline = outline + ","; }
                         outline = outline + ss;
+                        talker.AddStarSystemAlart(ss);
                     }
                     outline = "发现未收录星系 (" + outline + ") @" + str;
                     AddTextToObj(PickedResult, outline);
+                    
                 }
 
             }
             RichLineReadMutex.ReleaseMutex();
         }
+
         private void testbutton_Click(object sender, EventArgs e)
         {
             /*if (oThread == null)
             {
                 oThread = new Thread(new ThreadStart(this.SeekFile));
             }
-            oThread.Start();*/
+            */
+          
+          
+        }
+
+        /// <summary>
+        /// 启动所有的频道监视
+        /// </summary>
+        public void StartWatchLog()
+        {
             FileOper fo1 = new FileOper();
             fo1.filename = "联盟";
             FileOper.MessagePushbackDelegate mpd = new FileOper.MessagePushbackDelegate(RichReadLine);
@@ -119,89 +148,39 @@ namespace WindowsFormsApplication1
             fo3.MessageFunc = mpd3;
             Thread th3 = new Thread(new ThreadStart(fo3.SeekFile));
             th3.Name = "th3";
-            fo3.basepath = MyDocPath;            
+            fo3.basepath = MyDocPath;
             ThreadMgr.RunBackground(th3);
+
+
+            FileOper fo4 = new FileOper();
+            
+            fo4.filename = "程序员们的";
+            FileOper.MessagePushbackDelegate mpd4 = new FileOper.MessagePushbackDelegate(RichReadLine);
+            fo4.MessageFunc = mpd4;
+            Thread th4 = new Thread(new ThreadStart(fo4.SeekFile));
+            th4.Name = "th4";
+            fo4.basepath = MyDocPath;
+            ThreadMgr.RunBackground(th4);
+
+       
         }
 
-        public delegate void VoidFuncDelegate(object[] objs);
-        public delegate void SeekFileDelegate(string str);
-        
-        private void SeekFile()
-        {
-            string fileName = GetDefaultFileName();
-            FileStream stream = null;
-            int returnStatus = 0;
-            try
-            {
-                stream = new FileStream(fileName, FileMode.Open,
-                    FileAccess.Read, FileShare.ReadWrite);
-                StreamReader sr = new StreamReader(stream);
-                sr.ReadToEnd();
-               
-                do
-                {
-                    if (!sr.EndOfStream)
-                    {
-                        string bufstr = sr.ReadToEnd();
-                        Debug(bufstr);
-                    }
-                    if (loop)
-                    {
-                        Thread.Sleep(1000);
-                    }
-                } while (true);
-            }
-            catch (ThreadAbortException) { }
-            catch (Exception ex)
-            {
-                Debug(ex.ToString());
-                Console.WriteLine("Encountered some error.");
-                returnStatus = -1;
-            }
-            finally
-            {
-                if (stream != null)
-                {
-                    stream.Close();
-                }
-            }
-        }
-
-        public string GetDefaultFileName()
-        {
-            string default_path = "C:\\Users\\hqfyll\\Documents\\EVE\\logs\\Chatlogs";
-
-            DirectoryInfo dires = new DirectoryInfo(default_path);
-            FileInfo[] files = dires.GetFiles();
-            FileInfo result = null;
-            foreach (FileInfo f in files)
-            {
-                //Debug(f.Name);
-                //int nSearch = f.Name.IndexOf("联盟");
-                int nSearch = f.Name.IndexOf("本地");
-                if (nSearch >= 0)
-                {
-                    bool bChange = result == null || f.LastWriteTime > result.LastWriteTime;
-                    if (bChange)
-                    {
-                        result = f;
-                    }
-                }
-            }
-            Debug(result.FullName);
-            return result.FullName;
-        }
-
+        /// <summary>
+        /// 窗体关闭的时候删除所有线程
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Form1_FormClosed(object sender, FormClosedEventArgs e)
         {
-            //if (oThread != null) 
-            //{
-            //   oThread.Abort();
-                //oThread.Interrupt();
-            //}
             ThreadMgr.TerminateAllThreads();
+            talker.CloseAll();
         }
 
+        /// <summary>
+        /// ui代理
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <param name="str"></param>
         public delegate void AddTextToObjInvoke(object obj, string str);
         public void AddTextToObj(object obj, string str) 
         {
@@ -222,10 +201,23 @@ namespace WindowsFormsApplication1
             }
         }
 
-        private void PickedResult_TextChanged(object sender, EventArgs e)
+        //private void PickedResult_TextChanged(object sender, EventArgs e)
+        //{
+
+        //}
+
+
+        private void SoundTimer_Tick(object sender, EventArgs e)
         {
-
+            if (TalkerTimerSkip > 0) 
+            {
+                TalkerTimerSkip--;
+                return;
+            }
+            int nWaitTime = talker.TalkOneStep();
+            if (nWaitTime >= 1400) {
+                TalkerTimerSkip = 2;
+            }
         }
-
     }
 }

@@ -28,9 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.DebugOutput = new System.Windows.Forms.TextBox();
             this.testbutton = new System.Windows.Forms.Button();
             this.PickedResult = new System.Windows.Forms.TextBox();
+            this.SoundTimer = new System.Windows.Forms.Timer(this.components);
             this.SuspendLayout();
             // 
             // DebugOutput
@@ -54,12 +56,16 @@
             // 
             // PickedResult
             // 
-            this.PickedResult.Location = new System.Drawing.Point(41, 47);
+            this.PickedResult.Location = new System.Drawing.Point(0, 2);
             this.PickedResult.Multiline = true;
             this.PickedResult.Name = "PickedResult";
-            this.PickedResult.Size = new System.Drawing.Size(566, 488);
+            this.PickedResult.Size = new System.Drawing.Size(451, 199);
             this.PickedResult.TabIndex = 2;
-            this.PickedResult.TextChanged += new System.EventHandler(this.PickedResult_TextChanged);
+            // 
+            // SoundTimer
+            // 
+            this.SoundTimer.Interval = 400;
+            this.SoundTimer.Tick += new System.EventHandler(this.SoundTimer_Tick);
             // 
             // Form1
             // 
@@ -83,6 +89,7 @@
         private System.Windows.Forms.TextBox DebugOutput;
         private System.Windows.Forms.Button testbutton;
         private System.Windows.Forms.TextBox PickedResult;
+        private System.Windows.Forms.Timer SoundTimer;
     }
 }
 

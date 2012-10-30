@@ -6,3 +6,12 @@ C:\Users\hqfyll\Documents\Visual Studio 2008\Projects\WindowsFormsApplication1\W
 C:\Users\hqfyll\Documents\Visual Studio 2008\Projects\WindowsFormsApplication1\WindowsFormsApplication1\bin\Debug\WindowsFormsApplication1.exe
 C:\Users\hqfyll\Documents\Visual Studio 2008\Projects\WindowsFormsApplication1\WindowsFormsApplication1\bin\Debug\WindowsFormsApplication1.pdb
 C:\Users\hqfyll\Documents\Visual Studio 2008\Projects\WindowsFormsApplication1\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.pdb
+D:\PHP\EveToolBox\ChatLog\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.exe
+D:\PHP\EveToolBox\ChatLog\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.pdb
+D:\PHP\EveToolBox\ChatLog\WindowsFormsApplication1\bin\Debug\WindowsFormsApplication1.exe
+D:\PHP\EveToolBox\ChatLog\WindowsFormsApplication1\bin\Debug\WindowsFormsApplication1.pdb
+D:\PHP\EveToolBox\ChatLog\WindowsFormsApplication1\obj\Debug\ResolveAssemblyReference.cache
+D:\PHP\EveToolBox\ChatLog\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.Form1.resources
+D:\PHP\EveToolBox\ChatLog\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.Properties.Resources.resources
+D:\PHP\EveToolBox\ChatLog\WindowsFormsApplication1\obj\Debug\ChatLogWatcher.csproj.GenerateResource.Cache
+D:\PHP\EveToolBox\ChatLog\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.AiTalkerForm.resources
