@@ -24,7 +24,7 @@ namespace WindowsFormsApplication1
         public string MyDocPath = "";
         public AITalker talker = null;
         private int TalkerTimerSkip = 0;
-
+        public IniConfig Config;
         AiTalkerForm soundform = new AiTalkerForm();
 
         public Form1()
@@ -35,6 +35,8 @@ namespace WindowsFormsApplication1
         private void Form1_Load(object sender, EventArgs e)
         {
             //System.Windows.Forms.Control.CheckForIllegalCrossThreadCalls   =   false;
+            Config = new IniConfig();
+            Config.load();
             ThreadMgr.Parent = this;
             StarDict = new StarSearch();
             StarDict.Load();
@@ -49,13 +51,17 @@ namespace WindowsFormsApplication1
             SoundTimer.Enabled = true;
             int tid = Thread.CurrentThread.ManagedThreadId;
             Debug("Main tid is : "+ tid.ToString());
-            this.Text = "FDK 报警器 by 无脑战士";
-            this.Width = 451;
-            this.Height = 219;
-            PickedResult.Text = "长安内部试用版\r\n斐德克地区有效";
-            //PickedResult.Text = "";
-            PickedResult.Enabled = false;
-
+            if (!Config.DebugMsg)
+            {
+                this.Text = "FDK 报警器 by 无脑战士";
+                this.Width = 451;
+                this.Height = 219;
+                PickedResult.Text = "长安内部试用版\r\n斐德克地区有效";
+                //PickedResult.Text = "";
+                PickedResult.Enabled = false;
+                DebugOutput.Height = 0;
+            }
+            
         }
 
         public void Debug(string str)
@@ -72,6 +78,20 @@ namespace WindowsFormsApplication1
         {
             Debug(str);
 
+            bool Skip = false;
+            if (Config.SkipTread && Config.TreadKeyWards!=null) 
+            {
+                for (int i = 0; !Skip && i < Config.TreadKeyWards.Length; i++) 
+                {
+                    if (str.LastIndexOf(Config.TreadKeyWards[i]) > 0) 
+                    {
+                        Skip = true;
+                        Debug("Skip for " + Config.TreadKeyWards[i]);
+                    }
+                }
+            }
+            if (Skip) { return; }
+
             RichLineReadMutex.WaitOne();
             StarSearch.StarSystem[] StarSet = StarDict.SearchStarSystem(str);
             if (StarSet != null && StarSet.Length > 0)
@@ -86,7 +106,7 @@ namespace WindowsFormsApplication1
                 outline = "发现 (" + outline + ") @" + str;
                 AddTextToObj(PickedResult, outline);
             }
-            else 
+            else if (Config.SpeakUnknow)
             {
                 string[] starnames = StarDict.SearchUnkonwSystem(str);
                 if (starnames != null && starnames.Length > 0) 

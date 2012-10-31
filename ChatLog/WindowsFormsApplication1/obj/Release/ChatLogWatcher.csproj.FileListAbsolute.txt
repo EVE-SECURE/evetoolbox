@@ -15,3 +15,12 @@ D:\PHP\EveToolBox\ChatLog\WindowsFormsApplication1\obj\Release\WindowsFormsAppli
 D:\PHP\EveToolBox\ChatLog\WindowsFormsApplication1\obj\Release\WindowsFormsApplication1.Properties.Resources.resources
 D:\PHP\EveToolBox\ChatLog\WindowsFormsApplication1\obj\Release\ChatLogWatcher.csproj.GenerateResource.Cache
 D:\PHP\EveToolBox\ChatLog\WindowsFormsApplication1\obj\Release\WindowsFormsApplication1.AiTalkerForm.resources
+C:\work\Code\EVE_TOOLS\ChatLog\WindowsFormsApplication1\obj\Release\WindowsFormsApplication1.exe
+C:\work\Code\EVE_TOOLS\ChatLog\WindowsFormsApplication1\obj\Release\WindowsFormsApplication1.pdb
+C:\work\Code\EVE_TOOLS\ChatLog\WindowsFormsApplication1\bin\Release\WindowsFormsApplication1.exe
+C:\work\Code\EVE_TOOLS\ChatLog\WindowsFormsApplication1\bin\Release\WindowsFormsApplication1.pdb
+C:\work\Code\EVE_TOOLS\ChatLog\WindowsFormsApplication1\obj\Release\ResolveAssemblyReference.cache
+C:\work\Code\EVE_TOOLS\ChatLog\WindowsFormsApplication1\obj\Release\WindowsFormsApplication1.AiTalkerForm.resources
+C:\work\Code\EVE_TOOLS\ChatLog\WindowsFormsApplication1\obj\Release\WindowsFormsApplication1.Form1.resources
+C:\work\Code\EVE_TOOLS\ChatLog\WindowsFormsApplication1\obj\Release\WindowsFormsApplication1.Properties.Resources.resources
+C:\work\Code\EVE_TOOLS\ChatLog\WindowsFormsApplication1\obj\Release\ChatLogWatcher.csproj.GenerateResource.Cache
