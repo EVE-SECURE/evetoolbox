@@ -24,3 +24,7 @@ C:\work\Code\EVE_TOOLS\ChatLog\WindowsFormsApplication1\obj\Release\WindowsForms
 C:\work\Code\EVE_TOOLS\ChatLog\WindowsFormsApplication1\obj\Release\WindowsFormsApplication1.Form1.resources
 C:\work\Code\EVE_TOOLS\ChatLog\WindowsFormsApplication1\obj\Release\WindowsFormsApplication1.Properties.Resources.resources
 C:\work\Code\EVE_TOOLS\ChatLog\WindowsFormsApplication1\obj\Release\ChatLogWatcher.csproj.GenerateResource.Cache
+D:\PHP\EveToolBox\ChatLog\WindowsFormsApplication1\bin\Release\WindowsFormsApplication1.exe.manifest
+D:\PHP\EveToolBox\ChatLog\WindowsFormsApplication1\bin\Release\WindowsFormsApplication1.application
+D:\PHP\EveToolBox\ChatLog\WindowsFormsApplication1\obj\Release\WindowsFormsApplication1.exe.manifest
+D:\PHP\EveToolBox\ChatLog\WindowsFormsApplication1\obj\Release\WindowsFormsApplication1.application

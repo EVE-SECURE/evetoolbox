@@ -96,24 +96,31 @@ namespace WindowsFormsApplication1
         }
         public string GetDefaultFileName() 
         {
-            string path = basepath;
-
-            DirectoryInfo dires = new DirectoryInfo(path);
-            FileInfo[] files = dires.GetFiles();
-            FileInfo result = null;
-            foreach (FileInfo f in files)
+            try
             {
-                int nSearch = f.Name.IndexOf(filename);
-                if (nSearch >= 0)
+                string path = basepath;
+
+                DirectoryInfo dires = new DirectoryInfo(path);
+                FileInfo[] files = dires.GetFiles();
+                FileInfo result = null;
+                foreach (FileInfo f in files)
                 {
-                    bool bChange = result == null || f.LastWriteTime > result.LastWriteTime;
-                    if (bChange)
+                    int nSearch = f.Name.IndexOf(filename);
+                    if (nSearch >= 0)
                     {
-                        result = f;
+                        bool bChange = result == null || f.LastWriteTime > result.LastWriteTime;
+                        if (bChange)
+                        {
+                            result = f;
+                        }
                     }
                 }
+                return result.FullName;
             }
-            return result.FullName;
+            catch
+            {
+                return "";
+            }
         }
     }
 }

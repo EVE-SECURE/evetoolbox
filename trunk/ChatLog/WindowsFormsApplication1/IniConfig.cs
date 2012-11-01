@@ -37,24 +37,44 @@ namespace WindowsFormsApplication1
 
         bool IsSkipTrade() 
         {
-            return config_values["SkipTrade"] == "1";
+            try
+            {
+                return config_values["SkipTrade"] == "1";
+            }
+            catch { return true; }
         }
 
         bool IsSpeakUnknowSystem() 
         {
-            return config_values["SpeakUnknowSystem"] == "1";
+            try
+            {
+                return config_values["SpeakUnknowSystem"] == "1";
+            }
+            catch { return false; }
         }
 
         string[] GetTreadKeyWords() 
         {
-            string value = config_values["TradeKeyWords"];
-            if (value == null) { return null; }
-            return value.Split(new char[]{','});
+            try
+            {
+                string value = config_values["TradeKeyWords"];
+                if (value == null) { return null; }
+                return value.Split(new char[] { ',' });
+            }
+            catch{
+                return null;
+            }
         }
 
         bool IsDebugMode() 
         {
-            return config_values["DebugMessage"] == "1";
+            try
+            {
+                return config_values["DebugMessage"] == "1";
+            }
+            catch{
+                return false;
+            }
         }
     }
 }
