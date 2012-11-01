@@ -24,3 +24,7 @@ C:\work\Code\EVE_TOOLS\ChatLog\WindowsFormsApplication1\obj\Debug\WindowsFormsAp
 C:\work\Code\EVE_TOOLS\ChatLog\WindowsFormsApplication1\obj\Debug\ChatLogWatcher.csproj.GenerateResource.Cache
 C:\work\Code\EVE_TOOLS\ChatLog\WindowsFormsApplication1\bin\Debug\WindowsFormsApplication1.exe
 C:\work\Code\EVE_TOOLS\ChatLog\WindowsFormsApplication1\bin\Debug\WindowsFormsApplication1.pdb
+D:\PHP\EveToolBox\ChatLog\WindowsFormsApplication1\bin\Debug\WindowsFormsApplication1.exe.manifest
+D:\PHP\EveToolBox\ChatLog\WindowsFormsApplication1\bin\Debug\WindowsFormsApplication1.application
+D:\PHP\EveToolBox\ChatLog\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.exe.manifest
+D:\PHP\EveToolBox\ChatLog\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.application

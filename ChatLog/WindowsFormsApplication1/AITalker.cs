@@ -82,12 +82,12 @@ namespace WindowsFormsApplication1
         public string mciSendStringEasy(string str) 
         {
             string msg = "";
-            const int msg_length = 2560;
+            const int msg_length = 256;
             msg.PadLeft(msg_length);
 
-            int nErrCode = mciSendString(str, msg, msg_length - 1, 0);
+            int nErrCode = mciSendString(str, IntPtr.Zero,0, IntPtr.Zero);
             if (nErrCode!=0) {
-                mciGetErrorString(nErrCode, msg, msg_length - 1);
+                mciGetErrorString(nErrCode, IntPtr.Zero, 0);
             }
             return msg;
         }
@@ -181,15 +181,15 @@ namespace WindowsFormsApplication1
         [DllImport("winmm.dll", EntryPoint = "mciSendString", CharSet = CharSet.Auto)]
         public static extern int mciSendString(
             string lpstrCommand,
-            string lpstrReturnString,
+            IntPtr lpstrReturnString,
             int uReturnLength,
-            int hwndCallback
+            IntPtr hwndCallback
             );
         [DllImport("winmm.dll", EntryPoint = "mciGetErrorString", CharSet = CharSet.Auto)]
         public static extern bool mciGetErrorString
             (
             int fdwError,
-            string lpszErrorText,
+            IntPtr lpszErrorText,
             int uReturnLength
             );       
     }

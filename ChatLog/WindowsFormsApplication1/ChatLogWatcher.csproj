@@ -12,6 +12,27 @@
     <AssemblyName>WindowsFormsApplication1</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <ManifestCertificateThumbprint>E1927CB2C6C261E5B714F74E5C2A4C3C2D72BFCE</ManifestCertificateThumbprint>
+    <ManifestKeyFile>ChatLogWatcher_TemporaryKey.pfx</ManifestKeyFile>
+    <GenerateManifests>true</GenerateManifests>
+    <SignManifests>true</SignManifests>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <NoWin32Manifest>true</NoWin32Manifest>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>4</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+    <BootstrapperComponentsLocation>Relative</BootstrapperComponentsLocation>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -65,6 +86,7 @@
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
     <Compile Include="IniConfig.cs" />
+    <Compile Include="MiniDump.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="AiTalkerForm.resx">
@@ -76,14 +98,18 @@
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
+      <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
+    <None Include="ChatLogWatcher_TemporaryKey.pfx" />
+    <None Include="Config\Config.ini" />
+    <None Include="Config\Star.dat" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -95,6 +121,151 @@
     </Compile>
     <Compile Include="StarSearch.cs" />
     <Compile Include="ThreadManager.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.2.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 2.0 %28x86%29</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.0 %28x86%29</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 3.1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Config\LetterVoice\0.mp3" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Config\LetterVoice\1.mp3" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Config\LetterVoice\2.mp3" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Config\LetterVoice\3.mp3" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Config\LetterVoice\4.mp3" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Config\LetterVoice\5.mp3" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Config\LetterVoice\6.mp3" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Config\LetterVoice\7.mp3" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Config\LetterVoice\8.mp3" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Config\LetterVoice\9.mp3" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Config\LetterVoice\a.mp3" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Config\LetterVoice\alart.mp3" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Config\LetterVoice\b.mp3" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Config\LetterVoice\c.mp3" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Config\LetterVoice\d.mp3" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Config\LetterVoice\e.mp3" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Config\LetterVoice\enemy.mp3" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Config\LetterVoice\f.mp3" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Config\LetterVoice\g.mp3" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Config\LetterVoice\gang.mp3" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Config\LetterVoice\h.mp3" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Config\LetterVoice\i.mp3" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Config\LetterVoice\j.mp3" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Config\LetterVoice\k.mp3" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Config\LetterVoice\l.mp3" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Config\LetterVoice\m.mp3" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Config\LetterVoice\manyred.mp3" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Config\LetterVoice\n.mp3" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Config\LetterVoice\o.mp3" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Config\LetterVoice\p.mp3" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Config\LetterVoice\q.mp3" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Config\LetterVoice\r.mp3" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Config\LetterVoice\red.mp3" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Config\LetterVoice\s.mp3" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Config\LetterVoice\t.mp3" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Config\LetterVoice\u.mp3" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Config\LetterVoice\v.mp3" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Config\LetterVoice\w.mp3" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Config\LetterVoice\x.mp3" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Config\LetterVoice\y.mp3" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Config\LetterVoice\z.mp3" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
